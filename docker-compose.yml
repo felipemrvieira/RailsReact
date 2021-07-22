@@ -17,3 +17,5 @@ services:
       - db
 volumes:
   db_data:
+  myapp:
+    name: railsreact
