@@ -5,7 +5,8 @@ class HelloWorld extends React.Component {
     return (
       
       <React.Fragment>
-        Greeting: {this.props.greeting}
+        {Routes.students_path()}
+        Greeting here: {this.props.greeting}
       </React.Fragment>
     );
   }
