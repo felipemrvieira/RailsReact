@@ -1,5 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Funcional from './Functional'
+import Login from './Login'
 class HelloWorld extends React.Component {
   render () {
     return (
@@ -7,6 +9,8 @@ class HelloWorld extends React.Component {
       <React.Fragment>
         {Routes.students_path()}
         Greeting here: {this.props.greeting}
+        <Login />
+        <Funcional />
       </React.Fragment>
     );
   }
