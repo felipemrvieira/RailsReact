@@ -1,19 +1,43 @@
 version: "3.9"
 services:
+  redis:
+    image: redis:5.0.7
+    ports:
+      - '6379:6379'
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - web
+      - db
+      - redis
+    volumes:
+      - .:/myapp
+    environment:
+      RAILS_ENV: development
+      REDIS_HOST: redis
+    entrypoint: ./sidekiq-entrypoint.sh
+
   db:
     image: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp
+    environment:
+      REDIS_HOST: redis
     ports:
       - "3000:3000"
     depends_on:
       - db
+      - redis
 volumes:
   db_data:

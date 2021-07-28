@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Solutions</h1>
+
+
+<br>
+
+  <%= form_tag solutions_upload_path do %>
+  <%= submit_tag "Import solution file" %>
+  <% end %>
+
+  <br>
+
+<%= link_to 'New Solutions', solutions_index_path, :class => "btn btn-primary btn-sm" %> <%= link_to 'Home', solutions_index_path, :class => "btn btn-primary btn-sm" %>
