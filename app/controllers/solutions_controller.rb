@@ -13,8 +13,8 @@ class SolutionsController < ApplicationController
   end
 
   def upload
-    xlsx_file = File.join Rails.root, 'db', 'medidas.xlsx'
-    AddSolutionWorker.perform_async(xlsx_file)
+    csv_file = File.join Rails.root, 'db', 'medidas.csv'
+    AddSolutionWorker.perform_async(csv_file)
     redirect_to solutions_data_path, notice: 'solutions have been uploaded!'
   end
 
