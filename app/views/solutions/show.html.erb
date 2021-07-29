@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @solution.number %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @solution.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @solution.description %>
+</p>
+
+<%= link_to 'Edit', edit_solution_path(@solution) %> |
+<%= link_to 'Back', solutions_path %>

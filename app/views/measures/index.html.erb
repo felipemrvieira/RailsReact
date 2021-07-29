@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Measures</h1>
+
+<%=
+  link_to 'Download as Excel',
+  measures_path(format: :xlsx)
+%>
+<%=
+  link_to 'Upload from Excel',
+  new_measures_import_path
+%>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @measures.each do |measure| %>
+      <tr>
+        <td><%= measure.title %></td>
+        <td><%= measure.description %></td>
+        <td><%= link_to 'Show', measure %></td>
+        <td><%= link_to 'Edit', edit_measure_path(measure) %></td>
+        <td><%= link_to 'Destroy', measure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Measure', new_measure_path %>
