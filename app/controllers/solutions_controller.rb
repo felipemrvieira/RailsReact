@@ -2,14 +2,11 @@ require 'fileutils'
 
 class SolutionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_solution, only: [:index, :data]
+  before_action :set_solution, only: %i[ show edit update destroy ]
+
 
   def index
-    # if @solutions.length > 0
-    #   redirect_to solutions_data_path
-    # else
-    #   render 'index'
-    # end
+    @solutions = Solution.all
   end
 
   def show
@@ -26,6 +23,21 @@ class SolutionsController < ApplicationController
     redirect_to solutions_path, notice: 'solutions have been uploaded!'
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @solution.update(solution_params)
+        format.html { redirect_to @solution, notice: "solution was successfully updated." }
+        format.json { render :show, status: :ok, location: @solution }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @solution.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     RemoveSolutionWorker.perform_async
     redirect_to solutions_path
@@ -34,7 +46,11 @@ class SolutionsController < ApplicationController
   private
 
     def set_solution
-      @solutions = Solution.all
+      @solution = Solution.find(params[:id])
+    end
+
+    def solution_params
+      params.require(:solution).permit(:number, :title, :description)
     end
 
     def get_file
