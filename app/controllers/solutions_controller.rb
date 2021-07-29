@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class SolutionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_solution, only: [:index, :data]
@@ -15,17 +17,12 @@ class SolutionsController < ApplicationController
   end
 
   def new
+    @solution = Solution.new
   end
 
-  # def upload
-  #   csv_file = File.join Rails.root, 'db', 'medidas.csv'
-  #   AddSolutionWorker.perform_async(csv_file)
-  #   redirect_to solutions_data_path, notice: 'solutions have been uploaded!'
-  # end
-
-  def upload
-    xlsx_file = File.join Rails.root, 'db', 'medidas.xlsx'
-    AddSolutionWorker.perform_async(xlsx_file)
+  def create
+    file = get_file
+    AddSolutionWorker.perform_async(file)
     redirect_to solutions_path, notice: 'solutions have been uploaded!'
   end
 
@@ -38,6 +35,14 @@ class SolutionsController < ApplicationController
 
     def set_solution
       @solutions = Solution.all
+    end
+
+    def get_file
+      tmp = params[:solution][:xlsx_file].tempfile
+      file = File.join("public", params[:solution][:xlsx_file].original_filename)
+      FileUtils.cp tmp.path, file
+      
+      file
     end
 
 end

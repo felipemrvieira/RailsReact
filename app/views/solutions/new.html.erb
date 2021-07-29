@@ -1,10 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Solutions</h1>
 
 
-<br>
+  <%# <%= form_tag solutions_upload_path do %>
+    <%# <%= submit_tag "Import solution file" %>
+  <%#<% end %>
 
-  <%= form_tag solutions_upload_path do %>
-  <%= submit_tag "Import solution file" %>
+
+<%= form_with(model: @solution, local: true) do |form| %>
+  <% if @solution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@solution.errors.count, "error") %> prohibited this solution from being saved:</h2>
+
+      <ul>
+        <% @solution.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
+
+  <div class="field">
+    <%= form.label :xlsx_file %>
+    <%= form.file_field :xlsx_file %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
