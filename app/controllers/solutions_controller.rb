@@ -1,4 +1,5 @@
 class SolutionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_solution, only: [:index, :data]
 
   def index

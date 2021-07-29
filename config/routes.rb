@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :measures
   resources :measures_imports, only: [:new, :create]
 

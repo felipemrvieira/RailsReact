@@ -26,6 +26,7 @@ gem 'react-rails'
 gem 'js-routes'
 gem 'sidekiq'
 gem 'roo', '~> 2.8.0'
+gem 'devise'
 
 
 # Use Active Storage variant
