@@ -16,7 +16,7 @@ class AddSolutionWorker
     xlsx = Roo::Spreadsheet.open(xlsx_file)
     xlsx.default_sheet = xlsx.sheets[1]
 
-    (2..xlsx.last_row).each do |row|
+    (3..xlsx.last_row).each do |row|
       record = xlsx.row(row)
       solution = Solution.create(number: record[0], title: record[3], description: record[4])
     end

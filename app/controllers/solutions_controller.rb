@@ -3,18 +3,18 @@ class SolutionsController < ApplicationController
   before_action :set_solution, only: [:index, :data]
 
   def index
-    if @solutions.length > 0
-      redirect_to solutions_data_path
-    else
-      render 'index'
-    end
+    # if @solutions.length > 0
+    #   redirect_to solutions_data_path
+    # else
+    #   render 'index'
+    # end
   end
 
   def show
     @solution = Solution.find(params[:id])
   end
 
-  def data
+  def new
   end
 
   # def upload
@@ -26,12 +26,12 @@ class SolutionsController < ApplicationController
   def upload
     xlsx_file = File.join Rails.root, 'db', 'medidas.xlsx'
     AddSolutionWorker.perform_async(xlsx_file)
-    redirect_to solutions_data_path, notice: 'solutions have been uploaded!'
+    redirect_to solutions_path, notice: 'solutions have been uploaded!'
   end
 
   def destroy
     RemoveSolutionWorker.perform_async
-    redirect_to root_path
+    redirect_to solutions_path
   end
 
   private

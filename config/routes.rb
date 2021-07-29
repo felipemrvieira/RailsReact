@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :measures_imports, only: [:new, :create]
 
   resources :actions
-  root 'solutions#index'
-  get 'solutions/data', to: 'solutions#data'
   resources :solutions
   post 'solutions/upload', to: 'solutions#upload'
   resources :students

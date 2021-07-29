@@ -2,9 +2,24 @@
 
 <h1>Solutions</h1>
 
+<div class="table-responsive">
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th>number</th>
+      <th>title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<br>
-
-  <%= form_tag solutions_upload_path do %>
-  <%= submit_tag "Import solution file" %>
-  <% end %>
+  <tbody>
+    <% @solutions.each do |solution| %>
+      <tr>
+        <td><%= solution.number %></td>
+        <td><%= solution.title %></td>
+        <td><%= link_to 'Show', solution %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
