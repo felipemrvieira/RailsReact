@@ -28,6 +28,7 @@ gem 'sidekiq'
 gem 'roo', '~> 2.8.0'
 gem 'devise'
 gem 'rack-cors'
+gem 'devise_token_auth'
 
 
 # Use Active Storage variant

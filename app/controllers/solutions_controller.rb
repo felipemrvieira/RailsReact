@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class SolutionsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_solution, only: %i[ show edit update destroy ]
 
 
