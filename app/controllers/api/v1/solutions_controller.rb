@@ -24,7 +24,7 @@ class Api::V1::SolutionsController < ApplicationController
   def create
     file = get_file
     AddSolutionWorker.perform_async(file)
-    redirect_to solutions_path, notice: 'solutions have been uploaded!'
+    render json: {status:"ok"}, status: :created
   end
 
   def edit
@@ -63,8 +63,8 @@ class Api::V1::SolutionsController < ApplicationController
     end
 
     def get_file
-      tmp = params[:solution][:xlsx_file].tempfile
-      file = File.join("public", params[:solution][:xlsx_file].original_filename)
+      tmp = params[:xlsx_file].tempfile
+      file = File.join("public", params[:xlsx_file].original_filename)
       FileUtils.cp tmp.path, file
       
       file
