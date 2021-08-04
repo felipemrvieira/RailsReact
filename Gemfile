@@ -27,6 +27,7 @@ gem 'js-routes'
 gem 'sidekiq'
 gem 'roo', '~> 2.8.0'
 gem 'devise'
+gem 'rack-cors'
 
 
 # Use Active Storage variant
