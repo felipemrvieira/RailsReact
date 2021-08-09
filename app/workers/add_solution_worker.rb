@@ -18,10 +18,36 @@ class AddSolutionWorker
 
     (3..xlsx.last_row).each do |row|
       record = xlsx.row(row)
-      solution = Solution.create(number: record[0], title: record[3], description: record[4])
+
+      # attributes with _ are pending
+      solution = Solution.create(
+        number: record[0],
+        # _sector: record[1],
+        # _subsector: record[2],
+        title: record[3],
+        description: record[4],
+        # _solution_of: record[5],
+        guiding_public_policies: record[6],
+        technical_references: record[7],
+        examples_of_municipal_application: record[8],
+        # _: record[9],
+        # _: record[10],
+        # _: record[11],
+        # _: record[12],
+        action_category: record[13],
+        # _: record[14],
+        environmental_cobenefits: record[15],
+        social_cobenefits: record[16],
+        economic_cobenefits: record[17],
+        # _: record[18],
+        municipal_operating_mode: record[19],
+        alignment_with_ndc: record[20],
+        necessary_investment: record[21],
+        financing: record[22],
+        key_actors: record[23],
+        challenges: record[24],
+        implementation_time: record[25]
+      )
     end
-
   end
-
-
 end
