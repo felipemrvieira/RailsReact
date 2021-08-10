@@ -29,6 +29,7 @@ gem 'roo', '~> 2.8.0'
 gem 'devise'
 gem 'rack-cors'
 gem 'devise_token_auth'
+gem 'active_flag'
 
 
 # Use Active Storage variant
