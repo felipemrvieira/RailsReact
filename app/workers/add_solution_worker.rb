@@ -2,6 +2,7 @@ class AddSolutionWorker
   require 'csv'
   require 'roo'
   include Sidekiq::Worker
+  include SolutionHelper
   sidekiq_options retry: false
 
   # def perform(csv_file)
@@ -26,20 +27,20 @@ class AddSolutionWorker
         # _subsector: record[2],
         title: record[3],
         description: record[4],
-        # _solution_of: record[5],
+        solution_of: solution_of_helper(record[5]),
         guiding_public_policies: record[6],
         technical_references: record[7],
         examples_of_municipal_application: record[8],
         # _: record[9],
         # _: record[10],
-        # _: record[11],
-        # _: record[12],
+        fundamental_sector: fundamental_sector_helper(record[11]),
+        impact_on_emissions: impact_on_emissions_helper(record[12]),
         action_category: record[13],
         # _: record[14],
         environmental_cobenefits: record[15],
         social_cobenefits: record[16],
         economic_cobenefits: record[17],
-        # _: record[18],
+        sphere: sphere_helper(record[18]),
         municipal_operating_mode: record[19],
         alignment_with_ndc: record[20],
         necessary_investment: record[21],

@@ -6,7 +6,7 @@ class SolutionsController < ApplicationController
 
 
   def index
-    @solutions = Solution.all
+    @solutions = Solution.order(:number)
   end
 
   def show
@@ -50,7 +50,13 @@ class SolutionsController < ApplicationController
     end
 
     def solution_params
-      params.require(:solution).permit(:number, :title, :description)
+      params.require(:solution).permit(:number, :title, :description, 
+        :guiding_public_policies, :technical_references, 
+        :examples_of_municipal_application, :action_category, 
+        :environmental_cobenefits, :social_cobenefits, :economic_cobenefits, 
+        :municipal_operating_mode, :alignment_with_ndc, :necessary_investment, 
+        :financing, :key_actors, :challenges, :implementation_time, :solution_of,
+        :fundamental_sector, :impact_on_emissions, :sphere)
     end
 
     def get_file
